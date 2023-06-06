@@ -15,7 +15,9 @@ export class TodoListComponent {
 
   ngOnInit(): void {
     this.todoListService.firestoreCollection.valueChanges({idField: 'id'}).subscribe(item => {
-      this.allTask = item;
+      this.allTask = item.sort((a: any, b: any) => {
+        return a.isComplete -b.isComplete;
+      });
     });
   }
 
@@ -27,5 +29,9 @@ export class TodoListComponent {
 
   onStatusChange(idTask: string, newStatus: boolean): void {
     this.todoListService.updateStatusTask(idTask, newStatus);
+  }
+
+  onRemoveTask(idTask: string): void {
+    this.todoListService.deleteTask(idTask);
   }
 }
