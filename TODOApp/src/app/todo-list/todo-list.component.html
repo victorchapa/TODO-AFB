@@ -1,1 +1,18 @@
-<p>todo-list works!</p>
+<div class="card shadow-lg mt-5">
+    <div class="card-header text-center">
+        <h1 class="display-6 fw-bold">
+            TODO LIST
+        </h1>
+    </div>
+    <div class="card-body p-4">
+        <div class="input-group">
+            <input class="form-control" placeholder="What do you need to do?" type="text" #registerTask/>
+            <button class="btn" (click)="onClickEvent(registerTask)">
+                <i class="fa-solid fa-circle-plus fa-xl"></i>
+            </button>
+        </div>
+        <ul>
+            <li class=""></li>
+        </ul>
+    </div>
+</div>

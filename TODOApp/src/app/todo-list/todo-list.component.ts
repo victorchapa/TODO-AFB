@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TodoListService } from '../shared/todo-list.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,4 +9,19 @@ import { Component } from '@angular/core';
 })
 export class TodoListComponent {
 
+  allTask: any[] = [];
+
+  constructor(private todoListService: TodoListService) {}
+
+  ngOnInit(): void {
+    this.todoListService.firestoreCollection.valueChanges().subscribe(item => {
+      this.allTask = item;
+    });
+  }
+
+  onClickEvent(task: HTMLInputElement): void {
+    if(!task.value) return;
+    this.todoListService.addTodoTask(task.value);
+    task.value = '';
+  }
 }
