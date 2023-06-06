@@ -14,7 +14,7 @@ export class TodoListComponent {
   constructor(private todoListService: TodoListService) {}
 
   ngOnInit(): void {
-    this.todoListService.firestoreCollection.valueChanges().subscribe(item => {
+    this.todoListService.firestoreCollection.valueChanges({idField: 'id'}).subscribe(item => {
       this.allTask = item;
     });
   }
@@ -23,5 +23,9 @@ export class TodoListComponent {
     if(!task.value) return;
     this.todoListService.addTodoTask(task.value);
     task.value = '';
+  }
+
+  onStatusChange(idTask: string, newStatus: boolean): void {
+    this.todoListService.updateStatusTask(idTask, newStatus);
   }
 }

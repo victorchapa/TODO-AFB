@@ -11,8 +11,13 @@
                 <i class="fa-solid fa-circle-plus fa-xl"></i>
             </button>
         </div>
-        <ul>
-            <li class=""></li>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of allTask">
+                <span>
+                    <i class="text-success" [ngClass]="item.isComplete ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle'" (click)="onStatusChange(item.id, !item.isComplete)"></i>
+                    {{ item.title }}
+                </span>
+            </li>
         </ul>
     </div>
 </div>
